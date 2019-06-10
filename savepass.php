@@ -1,7 +1,24 @@
 <?php 
-
+/**
+* Class SavePass, guarda paswords
+*
+* Aplicacio de la practica de m8 que guarda les passwords
+*
+* @package Practica M8-UF4
+* @author Daniel Segura
+* @version 1.0
+* @copyright En aquest exemple no n'hi ha
+/
 class SavePass{
+
+    /** @var string ruta del arxiu */
     private $file;
+
+    /**
+    * Aquest constructor crida al construct adecuat.
+    *
+    * @return void
+    */
     function __construct() {
         $a = func_get_args(); 
         $i = func_num_args(); 
@@ -10,11 +27,25 @@ class SavePass{
         }
     }
 
+    /**
+    * Aquest metode es un constructor
+    *
+    * @param string $_file ruta al arxiu
+    *
+    * @return void
+    */
     function __construct1($_file) 
     { 
         $this->file = $_file;
     }
     
+    /**
+    * Aquesta funccio printa la contrasenya del user.
+    *
+    * @param string $_username nom usuari
+    *
+    * @return void
+    */
     public function get_password($username){
         
         if (($f = fopen($this->file, "r")) !== FALSE) {
@@ -34,6 +65,11 @@ class SavePass{
         
     }
 
+    /**
+    * Aquesta funccio printa totes les contrasenyes
+    *
+    * @return void
+    */
     public function list_usernames(){
         
         if (($f = fopen($this->file, "r")) !== FALSE) {
@@ -50,6 +86,15 @@ class SavePass{
         }
     }
 
+    /**
+    * Aquesta funcio guarda la contrasenya del user.
+    *
+    * @param string $nom nom del conjunt user i pwd
+    * @param string $user user mail
+    * @param string $pwd user pwd
+    *
+    * @return void
+    */
     public function add_password($nom,$user,$pwd)
     {
         if (($f = fopen($this->file, "a")) !== FALSE) {
