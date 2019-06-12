@@ -8,7 +8,7 @@
 * @author Daniel Segura
 * @version 1.0
 * @copyright En aquest exemple no n'hi ha
-/
+*/
 class SavePass{
 
     /** @var string ruta del arxiu */

@@ -1,70 +1,167 @@
+/**
+*	@file aplicacio.c
+*	@author Daniel Segura
+*	@version 1.0
+*	@date 2019-06-04
+*	@warning aixo es el arxiu del guillem perque no recordo res de c
+*	@copyright GNU Public License
+*	@mainpage SavePass DanielSegura (aplicacio)
+*	@section intro_sec Introduction
+*	This program was developed to store your passwords, during m08 uf 4
+*	@section compile_sec Compilation
+*	To compile this program, use gcc aplicacio.c -o aplicacio
+**/
+
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-int main( int argc, const char* argv[] )
-{
-    if( argc==4 && argv[0]=="set" ){
-    	
-        /**
-            Si hay 4 argumentos y el primero es la palabra set:
-            aplicacion.c set nom user pass
-            añadir una fila a un archivo users.txt del estilo CSV
-                nom,user,pass;
-        */
-        char nom[20] = argv[1];
-        char user[20] = argv[2];
-        char pass[20] = argv[3];
-        
-        File f*;
-		f = fopen("contrasenyes.csv", "a"); //modo para situarte al final y afegir contenido
-		fprintf(f, "%s,%s,%s\n", nom,user,pass); //no se si esto es correcto
-        fclose(f);
-        
-        
-    }else if ( argc==2 && argv[0] == "get" ){
-        /**
-            Si hay 2 argumentos y el primero es la palabra get:
-            aplicacion.c get manolo 
-            buscar en el users.txt el primer manolo y devolver su pass 
-        */
-        
-		char qui_busco[20] = argv[1];
-		
-        File f*;
-		f = fopen("contrasenyes.csv", "r");
-		char linia*;
-		
-		while(!EOF && !trobada){
-			linia = Fgets("(variable)");
-			char aux[3][20] = separarLiniasPorComas(linia); //devuelve un array de cadenas ["facebook","pepe@gmail.com","1234"];
-			//supongo que tendras que reccorer letra a letra buscando las ','
-			char usuari* = aux[1];
-			if(usuari == qui_busco){ //strcmp
-				
-				print("Tu password es: %s",aux[2]);
-				bool trobada = TRUE; //salir	!EOF && !trobada => !EOF && FALSE => FALSE
+/**
+* \brief This function is the option c) of the menu: get_password
+* \details Prints in screen the password of the username the user inputted
+* \param test_param this param doesnt exist, its just a test for dogygen
+* \return doesn't return anything, its a void
+**/
+void get_password(){
+
+	FILE * fp; /** Pointer to the file that stores passwords */
+	char *line = NULL; /** This string stores every line of the file.txt */
+	size_t len = 0;
+	ssize_t read;
+	int i, found = 0; /** Variable found is used for some stuff */
+
+	char * pch;
+ 
+	fp = fopen ("file.txt", "r");
+	
+	char param[32]; /** We store the username of the password we want here */
+
+	printf("Enter a username:\n");
+	scanf("%s", param);
+
+	while ((read = getline(&line, &len, fp)) != -1) {
+
+		pch = strtok (line,",");
+		i = 0;
+		while (pch != NULL)
+		{
+			if(i == 1){
+				if(!strcmp(pch,param)){
+					found = 1;
+				}
 			}
+			if(i == 2 && found == 1){
+				printf("The password for username: '%s' is: %s\n",param, pch);
+				found = 0;
+			}
+			pch = strtok (NULL, ",");
+			i++;
 		}
-		
-		fclose(f);
-		
-    }else if ( argc==1 argv[0] == "list" ){
-        /**
-            Si hay 1 argumento y es la palabra list:
-            aplicacion.c list 
-            leer i mostrar todas las filas.
-        */
-        File f*;
-		f = fopen("contrasenyes.csv", "r");
-		char linia*;
-		
-		while(!EOF){
-			linia = Fgets("(variable)");	//lee linia
-			print("%s\n",linia);			//escupe linia
-		}
-		
-		
-    }else{ return -1; } //final malo
-    return 0;//final ok
+	}
 }
+
+/*!
+* @brief This function is the option b) of the menu: list_usernames
+* @details Prints in screen all the combinations of description + usernames
+* @return doesn't return anything, its a void
+*/
+void list_usernames(){
+
+	FILE * fp; /** Pointer to the file that stores passwords */
+	char *line = NULL; /** This string stores every line of the file.txt */
+	size_t len = 0;
+	ssize_t read;
+	int i;
+
+	char * pch;
+  
+  
+	fp = fopen ("file.txt", "r");
+
+	while ((read = getline(&line, &len, fp)) != -1) {
+
+		pch = strtok (line,",");
+		i = 0;
+		while (pch != NULL)
+		{
+			if(i == 0) printf("Description: %s\t\t",pch);
+			if(i == 1) printf("Username: %s\n",pch);
+
+			pch = strtok (NULL, ",");
+			i++;
+		}
+
+		printf("\n");
+	}
+}
+
+/**
+* @brief This function is the option a) of the menu: add_password
+* @details Asks the user to input a description, username and password, then opens the file and stores the data
+* @return doesn't return anything, its a void
+**/
+void add_password(){
+
+	FILE * fp; /** Pointer to the file that stores passwords */
+
+	fp = fopen ("file.txt", "a+");
+
+	char* description[64], username[32], password[32];
+
+	printf("Enter a description:\n");
+	scanf("%s", description);
+
+	printf("Enter the username:\n");
+	scanf("%s", username);
+
+	printf("Enter the password:\n");
+	scanf("%s", password);
+
+	fprintf(fp, "%s,%s,%s\n", description, username, password);
+
+	fclose(fp);
+
+	printf("Your password has been stored!\n\n");
+
+}
+
+/*!
+* \brief Main function
+* \details This function prints a menu, and depending on the choice of the user, does one function and then exits the program
+* \return returns 0 if successfull
+*/
+int main () {
+
+   int choice;
+
+   printf("-------Menu-------\n");
+   printf("1) ADD A PASSWORD [1]\n");
+   printf("2) LIST ALL USERNAMES [2]\n");
+   printf("3) REMEMBER A PASSWORD [3]\n");
+   printf("4) EXIT [4]\n");
+ 
+	
+   scanf("%d", &choice);
+
+   system("clear");
+ 
+   if (choice==1)
+   {
+      add_password();
+   }
+   else if (choice==2)
+   {
+      list_usernames();
+   }
+   else if (choice==3)
+   {
+      get_password();
+   }
+
+   return 0;
+
+}
+

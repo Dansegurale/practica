@@ -1,0 +1,113 @@
+\hypertarget{aplicacio_8c}{}\section{aplicacio.\+c File Reference}
+\label{aplicacio_8c}\index{aplicacio.\+c@{aplicacio.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+Include dependency graph for aplicacio.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{aplicacio_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{aplicacio_8c_a3cbbab60b4ba9c8407fc6ab9a9ddec9e}{get\+\_\+password} ()
+\begin{DoxyCompactList}\small\item\em This function is the option c) of the menu\+: get\+\_\+password. \end{DoxyCompactList}\item 
+void \hyperlink{aplicacio_8c_a404566d1a8e7b270869258e3c71acfa3}{list\+\_\+usernames} ()
+\begin{DoxyCompactList}\small\item\em This function is the option b) of the menu\+: list\+\_\+usernames. \end{DoxyCompactList}\item 
+void \hyperlink{aplicacio_8c_a62104a76feeb098aa005353fc584a1d6}{add\+\_\+password} ()
+\begin{DoxyCompactList}\small\item\em This function is the option a) of the menu\+: add\+\_\+password. \end{DoxyCompactList}\item 
+int \hyperlink{aplicacio_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Daniel Segura 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2019-\/06-\/04 
+\end{DoxyDate}
+\begin{DoxyWarning}{Warning}
+aixo es el arxiu del guillem perque no recordo res de c 
+\end{DoxyWarning}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\index{aplicacio.\+c@{aplicacio.\+c}!add\+\_\+password@{add\+\_\+password}}
+\index{add\+\_\+password@{add\+\_\+password}!aplicacio.\+c@{aplicacio.\+c}}
+\subsubsection[{\texorpdfstring{add\+\_\+password()}{add_password()}}]{\setlength{\rightskip}{0pt plus 5cm}void add\+\_\+password (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{aplicacio_8c_a62104a76feeb098aa005353fc584a1d6}{}\label{aplicacio_8c_a62104a76feeb098aa005353fc584a1d6}
+
+
+This function is the option a) of the menu\+: add\+\_\+password. 
+
+Asks the user to input a description, username and password, then opens the file and stores the data \begin{DoxyReturn}{Returns}
+doesn\textquotesingle{}t return anything, its a void 
+\end{DoxyReturn}
+Pointer to the file that stores passwords \index{aplicacio.\+c@{aplicacio.\+c}!get\+\_\+password@{get\+\_\+password}}
+\index{get\+\_\+password@{get\+\_\+password}!aplicacio.\+c@{aplicacio.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+password()}{get_password()}}]{\setlength{\rightskip}{0pt plus 5cm}void get\+\_\+password (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{aplicacio_8c_a3cbbab60b4ba9c8407fc6ab9a9ddec9e}{}\label{aplicacio_8c_a3cbbab60b4ba9c8407fc6ab9a9ddec9e}
+
+
+This function is the option c) of the menu\+: get\+\_\+password. 
+
+Prints in screen the password of the username the user inputted 
+\begin{DoxyParams}{Parameters}
+{\em test\+\_\+param} & this param doesnt exist, its just a test for dogygen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+doesn\textquotesingle{}t return anything, its a void 
+\end{DoxyReturn}
+Pointer to the file that stores passwords
+
+This string stores every line of the file.\+txt
+
+Variable found is used for some stuff
+
+We store the username of the password we want here \index{aplicacio.\+c@{aplicacio.\+c}!list\+\_\+usernames@{list\+\_\+usernames}}
+\index{list\+\_\+usernames@{list\+\_\+usernames}!aplicacio.\+c@{aplicacio.\+c}}
+\subsubsection[{\texorpdfstring{list\+\_\+usernames()}{list_usernames()}}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+usernames (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{aplicacio_8c_a404566d1a8e7b270869258e3c71acfa3}{}\label{aplicacio_8c_a404566d1a8e7b270869258e3c71acfa3}
+
+
+This function is the option b) of the menu\+: list\+\_\+usernames. 
+
+Prints in screen all the combinations of description + usernames \begin{DoxyReturn}{Returns}
+doesn\textquotesingle{}t return anything, its a void 
+\end{DoxyReturn}
+Pointer to the file that stores passwords
+
+This string stores every line of the file.\+txt \index{aplicacio.\+c@{aplicacio.\+c}!main@{main}}
+\index{main@{main}!aplicacio.\+c@{aplicacio.\+c}}
+\subsubsection[{\texorpdfstring{main()}{main()}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{aplicacio_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{}\label{aplicacio_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+Main function. 
+
+This function prints a menu, and depending on the choice of the user, does one function and then exits the program \begin{DoxyReturn}{Returns}
+returns 0 if successfull 
+\end{DoxyReturn}
